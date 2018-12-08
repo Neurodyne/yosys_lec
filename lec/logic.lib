@@ -1,0 +1,296 @@
+library(ARlogic){
+/*-------------------------------------------------------*
+ *               Design : AND2_X2X2  * 
+ *-------------------------------------------------------*/
+cell(AND2_X2X2) {
+area :0.02;
+  cell_leakage_power : 0.02;
+  pin(A)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(B)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(Y)  {
+   direction        : output;
+   capacitance      : 0;
+   rise_capacitance : 0;
+   fall_capacitance : 0;
+   max_capacitance : 0;
+   function : "(A B)";
+  }
+}
+
+/*-------------------------------------------------------*
+ *               Design : AOI211_X2X2  * 
+ *-------------------------------------------------------*/
+cell(AOI211_X2X2) {
+area :0.02;
+  cell_leakage_power : 0.02;
+  pin(A0)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(A1)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(B0)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(C0)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(Y)  {
+   direction        : output;
+   capacitance      : 0;
+   rise_capacitance : 0;
+   fall_capacitance : 0;
+   max_capacitance : 0;
+   function : "(!((A0 A1)+B0+C0))";
+  }
+}
+
+/*-------------------------------------------------------*
+ *               Design : BUF_X1X1 * 
+ *-------------------------------------------------------*/
+cell(BUF_X1X1) {
+area :0.02;
+  cell_leakage_power : 0.02;
+  pin(A)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(Y)  {
+   direction        : output;
+   capacitance      : 0;
+   rise_capacitance : 0;
+   fall_capacitance : 0;
+   max_capacitance : 0;
+   function : "A";
+  }
+}
+
+/*-------------------------------------------------------*
+ *               Design : BUF_X2X2  * 
+ *-------------------------------------------------------*/
+cell(BUF_X2X2) {
+area :0.02;
+  cell_leakage_power : 0.02;
+
+  pin(A)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(Y)  {
+   direction        : output;
+   capacitance      : 0;
+   rise_capacitance : 0;
+   fall_capacitance : 0;
+   max_capacitance : 0;
+   function : "A";
+  }
+}
+
+/*-------------------------------------------------------*
+ *                Design : DFF_X2X2  * 
+ *-------------------------------------------------------*/
+cell(DFF_X2X2) {
+area :0.02; 
+  cell_leakage_power :0.02;
+ ff (IQ,IQN) {
+   next_state :"D";
+   clocked_on :"CLK";
+   clear_preset_var1 :L;
+ }
+  pin(D)  {
+   direction        : input;
+   capacitance      :  0.02;
+   rise_capacitance :  0.02;
+   fall_capacitance :  0.02;
+ }
+  pin(CLK)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+   clock : true;
+  }
+  pin(Q)  {
+   direction        : output;
+   capacitance      :  0.0;
+   rise_capacitance :  0.0;
+   fall_capacitance :  0.0;
+    max_capacitance :  0.0;
+   function : "IQ";
+  }
+  pin(QN)  {
+   direction        : output;
+   capacitance      :  0.0;
+   rise_capacitance :  0.0;
+   fall_capacitance :  0.0;
+    max_capacitance :  0.0;
+   function : "IQN";
+  }
+ } 
+
+/*-------------------------------------------------------*
+ *                Design : DFFARAS_X2X2  * 
+ *-------------------------------------------------------*/
+cell(DFFARAS_X2X2) {
+area :0.02; 
+  cell_leakage_power :0.02;
+ ff (IQ,IQN) {
+   next_state :"D";
+   clocked_on :"CLK";
+   clear :"!RN";
+   preset:"!SN";
+   clear_preset_var1 :L;
+ }
+  pin(D)  {
+   direction        : input;
+   capacitance      :  0.02;
+   rise_capacitance :  0.02;
+   fall_capacitance :  0.02;
+ }
+  pin(CLK)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+   clock : true;
+  }
+  pin(SN)  {
+   direction        : input;
+   capacitance      :  0.02;
+   rise_capacitance :  0.02;
+   fall_capacitance :  0.02;
+ }
+  pin(RN)  {
+   direction        : input;
+   capacitance      :  0.02;
+   rise_capacitance :  0.02;
+   fall_capacitance :  0.02;
+ }
+  pin(Q)  {
+   direction        : output;
+   capacitance      :  0.0;
+   rise_capacitance :  0.0;
+   fall_capacitance :  0.0;
+    max_capacitance :  0.0;
+   function : "IQ";
+  }
+  pin(QN)  {
+   direction        : output;
+   capacitance      :  0.0;
+   rise_capacitance :  0.0;
+   fall_capacitance :  0.0;
+    max_capacitance :  0.0;
+   function : "IQN";
+  }
+ } 
+
+
+/*-------------------------------------------------------*
+ *               Design : NAND2N_X1X0  * 
+ *-------------------------------------------------------*/
+cell(NAND2N_X1X0) {
+area :0.02;
+  cell_leakage_power : 0.02;
+  pin(AN)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(B)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(Y)  {
+   direction        : output;
+   capacitance      : 0;
+   rise_capacitance : 0;
+   fall_capacitance : 0;
+   max_capacitance : 0;
+   function : "!(!AN B)";
+  }
+}
+
+
+/*-------------------------------------------------------*
+ *               Design : NOR2_X0X2  * 
+ *-------------------------------------------------------*/
+cell(NOR2_X0X2) {
+area :0.02;
+  cell_leakage_power : 0.02;
+  pin(A)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(B)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(Y)  {
+   direction        : output;
+   capacitance      : 0;
+   rise_capacitance : 0;
+   fall_capacitance : 0;
+   max_capacitance : 0;
+   function : "!(A+B)";
+  }
+}
+
+/*-------------------------------------------------------*
+ *               Design : INV_X2X2  * 
+ *-------------------------------------------------------*/
+cell(INV_X2X2) {
+area :0.02;
+  cell_leakage_power : 0.02;
+cell_footprint : inv;
+  pin(A)  {
+   direction        : input;
+   capacitance      : 0.02;
+   rise_capacitance : 0.02;
+   fall_capacitance : 0.02;
+ }
+  pin(Y)  {
+   direction        : output;
+   capacitance      : 0;
+   rise_capacitance : 0;
+   fall_capacitance : 0;
+   max_capacitance : 0;
+   function : "!A";
+  }
+}
+
+
+}
+

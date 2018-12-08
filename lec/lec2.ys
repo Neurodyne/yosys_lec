@@ -1,0 +1,23 @@
+
+# gold
+read_verilog picorv32.v
+prep -flatten -top picorv32
+splitnets -ports;;
+design -stash gold
+
+# gate
+read_verilog synth_picorv32.v
+read_verilog logic_lec.v
+read_liberty -lib logic.lib
+
+prep -flatten -top picorv32
+splitnets -ports;;
+design -stash gate
+
+design -copy-from gold -as gold picorv32
+design -copy-from gate -as gate picorv32
+
+# prove
+miter -equiv -flatten -ignore_gold_x gold gate miter
+hierarchy -top miter
+sat -verify -tempinduct -prove trigger 0 -set-init-undef -set-def-inputs
