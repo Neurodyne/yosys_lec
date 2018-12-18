@@ -1,16 +1,19 @@
+# lec based on BMC and temproral induction (yosys "sat" command")
 
 # gold
 read_verilog picorv32.v
 prep -flatten -top picorv32
+memory
 splitnets -ports;;
 design -stash gold
 
 # gate
 read_verilog synth_picorv32.v
 read_verilog logic_lec.v
-read_liberty -lib logic.lib
+read_liberty logic.lib
 
 prep -flatten -top picorv32
+memory
 splitnets -ports;;
 design -stash gate
 

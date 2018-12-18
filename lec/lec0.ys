@@ -1,16 +1,20 @@
 
+# lec based on equiv_*
+
 # gold
 read_verilog picorv32.v
 prep -flatten -top picorv32
+memory
 splitnets -ports;;
 design -stash gold
 
 # gate
 read_verilog synth_picorv32.v
 read_verilog logic_lec.v
-read_liberty -lib logic.lib
+read_liberty logic.lib
 
 prep -flatten -top picorv32
+memory
 splitnets -ports;;
 design -stash gate
 
@@ -20,6 +24,6 @@ design -copy-from gate -as gate picorv32
 # prove 
 equiv_make gold gate equiv
 hierarchy -top equiv
-clean -purge; show
+#clean -purge; show
 equiv_simple
 equiv_status -assert

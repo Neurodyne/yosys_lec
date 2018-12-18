@@ -2,10 +2,8 @@
 read_verilog picorv32.v
 read_liberty -lib logic.lib
 
-hierarchy -check -top picorv32
-
 # High-level synthesis
-synth -run coarse; opt
+synth -top picorv32; opt
 
 # Map technology
 techmap; opt
@@ -16,12 +14,7 @@ dfflibmap -liberty logic.lib; opt
 # Map combinational cells, standard script
 abc -liberty logic.lib ; opt
 
-clean -purge
-
 # Cleanup
-opt
-clean
-
+clean -purge
 write_verilog synth_picorv32.v
-
 
